@@ -6,7 +6,11 @@ interface IButtonProps {
   type?: "submit" | "reset" | "button" | undefined;
   //obj?:{a:number;s?:string;o:{aa:string}}
 }
-const Button: React.FC<IButtonProps> = ({ children, onbuttonclick, type='button' }) => {
+const Button: React.FC<IButtonProps> = ({
+  children,
+  onbuttonclick,
+  type = "button",
+}) => {
   const clickHander = (
     evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
