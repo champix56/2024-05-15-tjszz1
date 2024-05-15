@@ -28,7 +28,9 @@ Button.propTypes = {
   children: PropTypes.any.isRequired,
   type: PropTypes.oneOf(["submit", "reset", "button", undefined]),
 };
+/*
+remplacer par les valeurs par def des props destructurees
 Button.defaultProps = {
   type: "button",
-};
+};*/
 export default Button;
