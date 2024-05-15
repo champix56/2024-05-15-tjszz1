@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../ui/Button/Button.tsx";
 import "./App.css";
 
 function App() {
-  return (
-    <Button
-      onbuttonclick={(maValue: any) => {
-        console.log("buttonclicked from App", maValue);
-      }}
-    >
-      <div>rgfdsrdfgrd</div>
-      <div>oihuhiug</div>
-      <div>jyfyitrf</div>
-      {/* dfghjk */}
+  const [counter, setCounter] = useState(0)
 
-    </Button>
+  return (
+    <div style={{ textAlign: "center" }}>
+      <div>counter : {counter}</div>
+      <Button
+        onbuttonclick={(maValue: any) => {
+          console.log("buttonclicked from App", maValue);
+          setCounter(counter-1);
+          console.log('====================================');
+          console.log(counter);
+          console.log('====================================');
+        }}
+        bgColor="tomato"
+      >
+        -1
+      </Button>&nbsp;
+      <Button
+        onbuttonclick={(maValue: any) => {
+          console.log("buttonclicked from App", maValue);
+          setCounter(counter+1);
+          console.log('====================================');
+          console.log(counter);
+          console.log('====================================');
+        }}
+      >
+        +1
+      </Button>
+    </div>
   );
 }
 
