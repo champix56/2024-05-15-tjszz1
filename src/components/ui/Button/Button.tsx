@@ -28,4 +28,7 @@ Button.propTypes = {
   children: PropTypes.any.isRequired,
   type: PropTypes.oneOf(["submit", "reset", "button", undefined]),
 };
+Button.defaultProps = {
+  type: "button",
+};
 export default Button;
