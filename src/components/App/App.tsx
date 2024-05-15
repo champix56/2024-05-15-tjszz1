@@ -1,9 +1,9 @@
 import React from "react";
-
+import Button from "../ui/Button/Button.jsx";
 import "./App.css";
 
 function App() {
-  return <div>DEMAT BREIZH</div>;
+  return <Button />;
 }
 
 export default App;
