@@ -6,19 +6,19 @@ interface IButtonProps {
   type?: "submit" | "reset" | "button" | undefined;
   //obj?:{a:number;s?:string;o:{aa:string}}
 }
-const Button: React.FC<IButtonProps> = (props) => {
+const Button: React.FC<IButtonProps> = ({ children, onbuttonclick, type='button' }) => {
   const clickHander = (
     evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     console.log(evt);
     // if (undefined !== props.onbuttonclick) {
-    props.onbuttonclick!("coucou");
+    onbuttonclick!("coucou");
     //}
   };
-  console.log(props);
+  //console.log(props);
   return (
-    <button onClick={clickHander} className="Button" type={props.type}>
-      {props.children}
+    <button onClick={clickHander} className="Button" type={type}>
+      {children}
     </button>
   );
 };
