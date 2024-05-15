@@ -4,8 +4,18 @@ interface IButtonProps {
   titre: string;
 }
 const Button: React.FC<IButtonProps> = (props) => {
+  const clickHander = (
+    evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    console.log(evt);
+    props.onbuttonclick("coucou");
+  };
   console.log(props);
-  return <div className="Button">{props.titre}</div>;
+  return (
+    <button onClick={clickHander} className="Button">
+      {props.titre}
+    </button>
+  );
 };
 
 export default Button;
