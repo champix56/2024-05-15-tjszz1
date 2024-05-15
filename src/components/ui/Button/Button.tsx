@@ -27,12 +27,5 @@ Button.propTypes = {
   onbuttonclick: PropTypes.func,
   children: PropTypes.any.isRequired,
   type: PropTypes.oneOf(["submit", "reset", "button", undefined]),
-  /*obj: PropTypes.shape({
-    a: PropTypes.number,
-    s: PropTypes.string,
-    o: PropTypes.shape({
-      
-    })
-  }),*/
 };
 export default Button;
