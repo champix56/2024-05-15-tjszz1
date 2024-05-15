@@ -1,8 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 interface IButtonProps {
   onbuttonclick?: Function;
   children: string | React.ReactElement | Array<React.ReactNode | string>;
   type?: "submit" | "reset" | "button" | undefined;
+  //obj?:{a:number;s?:string;o:{aa:string}}
 }
 const Button: React.FC<IButtonProps> = (props) => {
   const clickHander = (
@@ -21,4 +23,16 @@ const Button: React.FC<IButtonProps> = (props) => {
   );
 };
 
+Button.propTypes = {
+  onbuttonclick: PropTypes.func,
+  children: PropTypes.any.isRequired,
+  type: PropTypes.oneOf(["submit", "reset", "button", undefined]),
+  /*obj: PropTypes.shape({
+    a: PropTypes.number,
+    s: PropTypes.string,
+    o: PropTypes.shape({
+      
+    })
+  }),*/
+};
 export default Button;
