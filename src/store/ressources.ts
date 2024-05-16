@@ -14,6 +14,26 @@ const ressources = createSlice({
   name: "ressources",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      fetchDatas.fulfilled,
+      (
+        s,
+        action: {
+          type: string;
+          payload: {
+            images: Array<ImageInterface>;
+            memes: Array<MemeInterface>;
+          };
+        }
+      ) => {
+        s.images.splice(0);
+        s.images.push(...action.payload.images);
+        s.memes.splice(0);
+        s.memes.push(...action.payload.memes);
+      }
+    );
+  },
 });
 
 // export const {} = ressources.actions;
