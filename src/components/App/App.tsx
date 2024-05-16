@@ -14,6 +14,7 @@ import MemeForm from "../functionnal/MemeForm/MemeForm";
 import { RESSOURCES_NAME, REST_ADR } from "../../config/config";
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home";
+import Editor from "../../pages/Editor/Editor";
 
 interface IAppProps {}
 
@@ -46,35 +47,8 @@ class App extends Component<IAppProps, IAppState> {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route
-            path="/new"
-            element={
-              <FlexW1Grow>
-                <MemeSVGViewer
-                  meme={this.state.meme}
-                  image={this.state.images.find(
-                    (img) => img.id === this.state.meme.imageId
-                  )}
-                  basePath=""
-                />
-                <MemeForm
-                  meme={this.state.meme}
-                  onMemeChange={(meme: MemeInterface) => {
-                    this.setState({ meme: meme });
-                  }}
-                  onMemeSubmit={(m) => {
-                    console.log(
-                      "%c%s",
-                      "color:blue;font-Size:24pt;text-decoration:underline",
-                      "Le button submit a été clicked"
-                    );
-                    //// fetch()
-                  }}
-                  images={this.state.images}
-                />
-              </FlexW1Grow>
-            }
-          />
+          <Route path="/new" element={<Editor />} />
+          <Route path="/edit/:id" element={<Editor />} />
         </Routes>
 
         <Footer />
