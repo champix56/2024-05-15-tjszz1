@@ -1,5 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
-import {currentReducer} from './current.ts'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { currentReducer } from "./current.ts";
+import {ressourcesReducer} from './ressources.ts'
 export const store = configureStore({
-  reducer: currentReducer,
+  reducer: combineReducers({
+    current: currentReducer,
+    ressources: ressourcesReducer,
+  }),
 });
