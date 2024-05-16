@@ -11,5 +11,5 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 store.dispatch({ type: "current/change", payload: { text: "coucou" } });
-store.dispatch(change({ text: "demat breizh" }));
+store.dispatch(change({...store.getState().current, text: "demat breizh" }));
 store.dispatch(fetchDatas());
