@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./NavBar.module.css";
+import React from "react";
+import { Container, Nav, Navbar as NavBar } from "react-bootstrap";
+import '../../../../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../../../../node_modules/bootstrap/dist/js/bootstrap.js'
+// import styles from "./NavBar.module.css";
 interface INavBarProps {}
-const initialState = {};
-const NavBar: React.FC<INavBarProps> = (props) => {
-  const [state, setstate] = useState(initialState);
-  useEffect(() => {
-    //mount
-    return () => {
-      //unmount
-    };
-  }, []);
+
+const Navbar: React.FC<INavBarProps> = () => {
   return (
-    <div className={styles.NavBar} data-testid="NavBar">
-      NavBar
-      {JSON.stringify(props)}
-      {JSON.stringify(state)}
-    </div>
+    <NavBar bg="dark" data-bs-theme="dark">
+      <Container>
+        <NavBar.Brand href="#home">Home</NavBar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="#home">thumbnail</Nav.Link>
+          <Nav.Link href="#features">new</Nav.Link>
+          <Nav.Link href="#pricing">edit/0</Nav.Link>
+        </Nav>
+      </Container>
+    </NavBar>
   );
 };
-NavBar.propTypes = {};
-export default NavBar;
+
+export default Navbar;
