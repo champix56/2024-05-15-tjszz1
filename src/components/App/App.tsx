@@ -1,48 +1,58 @@
-import React, { useEffect, useState } from "react";
-import Button from "../ui/Button/Button.tsx";
-import "./App.css";
+import {
+  ImageInterface,
+  MemeInterface,
+  MemeSVGViewer,
+  emptyMeme,
+} from "orsys-tjs-meme";
+import React, { Component } from "react";
+import FlexH3Grow from "../layout/FlexH3Grow/FlexH3Grow";
+import Header from "../ui/Header/Header";
+import NavBar from "../ui/NavBar/NavBar";
+import FlexW1Grow from "../layout/FlexW1Grow/FlexW1Grow";
+import Footer from "../ui/Footer/Footer";
 
-function App() {
-  const [counter, setCounter] = useState(-10000);
-  useEffect(() => {
-    console.log("declenchement de l'effect didMount & didUpdate", counter);
-    // return () => {
-    //   console.log('démontage')
-    // };
-  }, [counter]);
-  useEffect(() => {
-    setCounter(0);
-  }, []);
-  return (
-    <div style={{ textAlign: "center" }}>
-      <div>counter : {counter}</div>
-      <Button
-      style={{padding:'0', }}
-        onbuttonclick={(maValue: any) => {
-          console.log("buttonclicked from App", maValue);
-          setCounter(counter - 1);
-          // console.log('====================================');
-          // console.log(counter);
-          // console.log('====================================');
-        }}
-        bgColor="tomato"
-      >
-        -1
-      </Button>
-      &nbsp;
-      <Button
-        onbuttonclick={(maValue: any) => {
-          console.log("buttonclicked from App", maValue);
-          setCounter(counter + 1);
-          // console.log('====================================');
-          // console.log(counter);
-          // console.log('====================================');
-        }}
-      >
-        +1
-      </Button>
-    </div>
-  );
+interface IAppProps {}
+
+interface IAppState {
+  meme: MemeInterface;
+  images: Array<ImageInterface>;
+  memes: Array<MemeInterface>;
+}
+
+class App extends Component<IAppProps, IAppState> {
+  // state = {};
+  constructor(props: IAppProps) {
+    super(props);
+    this.state = {
+      meme: emptyMeme,
+      images: [],
+      memes: [],
+    };
+  }
+  componentDidMount(): void {
+    this.setState({
+      meme: { ...this.state.meme, text: "Coucou", y: 200, fontSize: 25 },
+    });
+  }
+  render() {
+    return (
+      <FlexH3Grow>
+        <Header />
+        <NavBar />
+        <FlexW1Grow>
+          <MemeSVGViewer
+            meme={this.state.meme}
+            image={this.state.images.find(
+              (img) => img.id === this.state.meme.imageId
+            )}
+            basePath=""
+          />
+          <div>Formulaire</div>
+        </FlexW1Grow>
+        <Footer />
+      </FlexH3Grow>
+    );
+  }
 }
 
 export default App;
