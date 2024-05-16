@@ -1,1 +1,7 @@
-.FlexW1Grow {}
+.FlexW1Grow {
+    display: flex;
+    height: 100%;
+}
+.FlexW1Grow > *:nth-child(1){
+    flex-grow: 1;
+}
