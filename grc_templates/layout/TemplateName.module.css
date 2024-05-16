@@ -1,0 +1,10 @@
+.TemplateName {
+  display: flex;
+  flex-direction: row;
+}
+.TemplateName > div:nth-child(1) {
+  flex-grow: 1;
+}
+.TemplateName > * {
+  padding: 10px;
+}

@@ -1,0 +1,32 @@
+{
+  "usesTypeScript": true,
+  "usesStyledComponents": false,
+  "usesCssModule": true,
+  "cssPreprocessor": "css",
+  "testLibrary": "Testing Library",
+  "component": {
+    "default": {
+      "path": "src/components",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": true,
+      "withLazy": true,
+      "customTemplates": {
+        "component": "grc_templates/functionnal/TemplateName.tsx",
+        "test": "grc_templates/functionnal/readme.md"
+      }
+    },
+    "layout": {
+      "path": "src/components/layout",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": true,
+      "withLazy": true,
+      "customTemplates": {
+        "component": "grc_templates/layout/TemplateName.tsx",
+        "test": "grc_templates/layout/TemplateName.test.tsx",
+        "story": "grc_templates/layout/TemplateName.stories.tsx"
+      }
+    }
+  }
+}
