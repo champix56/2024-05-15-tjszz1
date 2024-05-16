@@ -11,6 +11,7 @@ import NavBar from "../ui/NavBar/NavBar";
 import FlexW1Grow from "../layout/FlexW1Grow/FlexW1Grow";
 import Footer from "../ui/Footer/Footer";
 import MemeForm from "../functionnal/MemeForm/MemeForm";
+import { RESSOURCES_NAME, REST_ADR } from "../../config/config";
 
 interface IAppProps {}
 
@@ -31,9 +32,9 @@ class App extends Component<IAppProps, IAppState> {
     };
   }
   componentDidMount(): void {
-    this.setState({
-      meme: { ...this.state.meme, text: "Coucou", y: 200, fontSize: 25 },
-    });
+    fetch(`${REST_ADR}${RESSOURCES_NAME.images}`)
+      .then((r) => r.json())
+      .then((arr) => this.setState({ images: arr }));
   }
   render() {
     return (
@@ -48,9 +49,17 @@ class App extends Component<IAppProps, IAppState> {
             )}
             basePath=""
           />
-          <MemeForm meme={this.state.meme} onMemeChange={(meme:MemeInterface)=>{
-              this.setState({meme:meme})
-          }}/>
+          <MemeForm
+            meme={this.state.meme}
+            onMemeChange={(meme: MemeInterface) => {
+              this.setState({ meme: meme });
+            }}
+            onMemeSubmit={(m) => {
+              console.log('%c%s','color:blue;font-Size:24pt;text-decoration:underline','Le button submit a été clicked');
+              //// fetch()
+            }}
+            images={this.state.images}
+          />
         </FlexW1Grow>
         <Footer />
       </FlexH3Grow>

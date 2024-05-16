@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./MemeForm.module.css";
-import { MemeInterface } from "orsys-tjs-meme";
+import { ImageInterface, MemeInterface } from "orsys-tjs-meme";
 import Button from "../../ui/Button/Button";
 interface IMemeFormProps {
   meme: MemeInterface;
   onMemeChange: Function;
+  onMemeSubmit:Function;
+  images: Array<ImageInterface>;
 }
 
 const MemeForm: React.FC<IMemeFormProps> = (props) => {
+  const [old, setOld] = useState(props.meme)
   const handleStringChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const newState = { ...props.meme };
     // @ts-ignore
@@ -15,7 +18,9 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
     props.onMemeChange(newState);
   };
 
-  const handleNumberChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNumberChange = (
+    evt: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const newState = { ...props.meme };
     // @ts-ignore
     newState[evt.target.name] = parseInt(evt.target.value);
@@ -29,7 +34,15 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
   };
   return (
     <div className={styles.MemeForm} data-testid="MemeForm">
-      <form>
+      <form
+        onReset={() => {
+          props.onMemeChange(old);
+        }}
+        onSubmit={evt=>{
+          evt.preventDefault();
+          props.onMemeSubmit(props.meme);
+        }}
+      >
         <label htmlFor="titre">
           <h1>Titre</h1>
         </label>
@@ -45,8 +58,18 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
           <h2>Image</h2>
         </label>
         <br />
-        <select name="image" id="image">
+        <select
+          name="imageId"
+          id="imageId"
+          value={props.meme.imageId}
+          onChange={handleNumberChange}
+        >
           <option value="-1">No image</option>
+          {props.images.map((img, i) => (
+            <option key={"img" + i} value={img.id}>
+              {img.name}
+            </option>
+          ))}
         </select>
         <hr />
         <label htmlFor="text">
@@ -151,10 +174,13 @@ const MemeForm: React.FC<IMemeFormProps> = (props) => {
         />
         <hr />
         <br />
-
         <div className={styles.halfContainer}>
-          <Button type="reset" bgColor="tomato">Reinit</Button>
-          <Button type="submit" bgColor="skyblue">Sauvegarder</Button>
+          <Button type="reset" bgColor="tomato">
+            Reinit
+          </Button>
+          <Button type="submit" bgColor="skyblue">
+            Sauvegarder
+          </Button>
         </div>
       </form>
     </div>
