@@ -16,6 +16,16 @@
         "test": "grc_templates/functionnal/readme.md"
       }
     },
+    "ui": {
+      "path": "src/components/ui",
+      "withStyle": true,
+      "withTest": true,
+      "withStory": true,
+      "withLazy": true,
+      "customTemplates": {
+        "component": "grc_templates/functionnal/TemplateName.tsx"
+      }
+    },
     "layout": {
       "path": "src/components/layout",
       "withStyle": true,
