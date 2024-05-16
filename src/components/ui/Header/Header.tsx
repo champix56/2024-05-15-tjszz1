@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import styles from "./Header.module.css";
 interface IHeaderProps {}
-const initialState = {};
-const Header: React.FC<IHeaderProps> = (props) => {
-  const [state, setstate] = useState(initialState);
-  useEffect(() => {
-    //mount
-    return () => {
-      //unmount
-    };
-  }, []);
+
+const Header: React.FC<IHeaderProps> = () => {
   return (
     <div className={styles.Header} data-testid="Header">
-      Header
-      {JSON.stringify(props)}
-      {JSON.stringify(state)}
+      <span className={styles.meme}>Meme</span>.
+      <span className={styles.js}>js</span>
     </div>
   );
 };
-Header.propTypes = {};
 export default Header;
