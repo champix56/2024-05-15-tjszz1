@@ -6,7 +6,7 @@ interface IButtonProps {
   children: string | React.ReactElement | Array<React.ReactNode | string>;
   type?: "submit" | "reset" | "button" | undefined;
   bgColor?: "skyblue" | "tomato" | "lightgreen";
-  style: object
+  style?: object
   //obj?:{a:number;s?:string;o:{aa:string}}
 }
 const Button: React.FC<IButtonProps> = ({

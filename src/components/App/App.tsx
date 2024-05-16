@@ -10,6 +10,7 @@ import Header from "../ui/Header/Header";
 import NavBar from "../ui/NavBar/NavBar";
 import FlexW1Grow from "../layout/FlexW1Grow/FlexW1Grow";
 import Footer from "../ui/Footer/Footer";
+import MemeForm from "../functionnal/MemeForm/MemeForm";
 
 interface IAppProps {}
 
@@ -47,7 +48,9 @@ class App extends Component<IAppProps, IAppState> {
             )}
             basePath=""
           />
-          <div>Formulaire</div>
+          <MemeForm meme={this.state.meme} onMemeChange={(meme:MemeInterface)=>{
+              this.setState({meme:meme})
+          }}/>
         </FlexW1Grow>
         <Footer />
       </FlexH3Grow>

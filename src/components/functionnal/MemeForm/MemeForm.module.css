@@ -4,3 +4,11 @@
 .smallNumber{
     width:80px;
 }
+.halfContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.halfContainer>*{
+    width: 45%;
+}
