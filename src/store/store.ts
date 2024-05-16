@@ -13,3 +13,9 @@ store.subscribe(() => {
 store.dispatch({ type: "current/change", payload: { text: "coucou" } });
 store.dispatch(change({...store.getState().current, text: "demat breizh" }));
 store.dispatch(fetchDatas());
+
+
+// Get the type of our store variable
+export type AppStore = typeof store
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore['getState']>
