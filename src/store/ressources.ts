@@ -54,8 +54,8 @@ export const fetchDatas = createAsyncThunk(
     const prMemes = await fetch(`${REST_ADR}${RESSOURCES_NAME.meme}`);
     const prFull = await Promise.all([prMemes, prImages]);
     return await {
-      images: await prFull[0].json(),
-      memes: await prFull[1].json(),
+      images: await prFull[1].json(),
+      memes: await prFull[0].json(),
     };
   }
 );
