@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeMeme, clearMeme } from "../../store/current";
 import { RootState } from "../../store/store";
 import { MemeInterface } from "orsys-tjs-meme";
-
+import {Helmet} from "react-helmet";
 interface IEditorProps {}
 
 const Editor: React.FC<IEditorProps> = () => {
@@ -30,10 +30,17 @@ const Editor: React.FC<IEditorProps> = () => {
     };
   }, [params.id, memes, dispatch]);
   return (
-    <FlexW1Grow>
-      <MemeSVGViewer />
-      <MemeForm />
-    </FlexW1Grow>
+    <>
+      <Helmet>
+       
+        <title>Edition d'un meme</title>
+    
+      </Helmet>
+      <FlexW1Grow>
+        <MemeSVGViewer />
+        <MemeForm />
+      </FlexW1Grow>
+    </>
   );
 };
 
