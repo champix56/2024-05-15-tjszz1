@@ -12,7 +12,7 @@ const Navbar: React.FC<INavBarProps> = () => {
   return (
     <NavBar bg="dark" data-bs-theme="dark">
       <Container>
-        <LinkContainer to="/home">
+        <LinkContainer to="/">
           <NavBar.Brand>Home</NavBar.Brand>
         </LinkContainer>
         <Nav className="me-auto">

@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { addMeme, fetchAll, ressourcesReducer } from "./ressources";
-import { emptyMeme } from "orsys-tjs-meme";
+import { fetchAll, ressourcesReducer } from "./ressources";
 import { currentReducer } from "./current";
 
 export const store = configureStore({
@@ -12,10 +11,9 @@ export const store = configureStore({
 store.subscribe(() => {
   console.log(store.getState());
 });
+store.dispatch(fetchAll());
 
-// store.dispatch(addMeme({ ...emptyMeme, text: "coucou 1" }));
-// store.dispatch(addMeme({ ...emptyMeme, text: "coucou 2" }));
-// store.dispatch(addMeme({ ...emptyMeme, text: "coucou 3" }));
-//setInterval(() => {
-  store.dispatch(fetchAll());
-//}, 15000);
+// Get the type of our store variable
+export type AppStore = typeof store
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore['getState']>

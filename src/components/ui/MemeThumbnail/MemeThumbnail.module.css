@@ -1,0 +1,13 @@
+.MemeThumbnail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.MemeThumbnail > * {
+  width: 20vw;
+  height: 150px;
+}
+.MemeThumbnail > * div,
+.MemeThumbnail > * svg {
+  height: 100%;
+}

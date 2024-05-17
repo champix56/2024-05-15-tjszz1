@@ -1,43 +1,31 @@
-import {
-  ImageInterface,
-  MemeInterface,
-  MemeSVGViewer,
-  emptyMeme,
-} from "orsys-tjs-meme";
+import { ImageInterface, MemeInterface, emptyMeme } from "orsys-tjs-meme";
 import React, { Component } from "react";
 import FlexH3Grow from "../layout/FlexH3Grow/FlexH3Grow";
 import Header from "../ui/Header/Header";
 import NavBar from "../ui/NavBar/NavBar";
 import FlexW1Grow from "../layout/FlexW1Grow/FlexW1Grow";
 import Footer from "../ui/Footer/Footer";
-import MemeForm from "../functionnal/MemeForm/MemeForm";
+import MemeForm from "../functionnal/MemeForm/MemeForm.store";
 import { RESSOURCES_NAME, REST_ADR } from "../../config/config";
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home/Home";
+import { store } from "../../store/store";
+import MemeSVGViewer from "../ui/MemeSVGViewer/MemeSVGViewer";
+import Editor from "../../pages/Editor/Editor";
+import Thumbnail from "../../pages/Thumbnail/Thumbnail";
 
 interface IAppProps {}
 
-interface IAppState {
-  meme: MemeInterface;
-  images: Array<ImageInterface>;
-  memes: Array<MemeInterface>;
-}
+ 
 
-class App extends Component<IAppProps, IAppState> {
+class App extends Component<IAppProps, void> {
   // state = {};
   constructor(props: IAppProps) {
     super(props);
-    this.state = {
-      meme: emptyMeme,
-      images: [],
-      memes: [],
-    };
+   
+    console.log(store);
   }
-  componentDidMount(): void {
-    fetch(`${REST_ADR}${RESSOURCES_NAME.images}`)
-      .then((r) => r.json())
-      .then((arr) => this.setState({ images: arr }));
-  }
+
   render() {
     return (
       <FlexH3Grow>
@@ -45,36 +33,9 @@ class App extends Component<IAppProps, IAppState> {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-
-          <Route
-            path="/new"
-            element={
-              <FlexW1Grow>
-                <MemeSVGViewer
-                  meme={this.state.meme}
-                  image={this.state.images.find(
-                    (img) => img.id === this.state.meme.imageId
-                  )}
-                  basePath=""
-                />
-                <MemeForm
-                  meme={this.state.meme}
-                  onMemeChange={(meme: MemeInterface) => {
-                    this.setState({ meme: meme });
-                  }}
-                  onMemeSubmit={(m) => {
-                    console.log(
-                      "%c%s",
-                      "color:blue;font-Size:24pt;text-decoration:underline",
-                      "Le button submit a été clicked"
-                    );
-                    //// fetch()
-                  }}
-                  images={this.state.images}
-                />
-              </FlexW1Grow>
-            }
-          />
+          <Route path="/thumbnail" element={<Thumbnail />} />
+          <Route path="/new" element={<Editor />} />
+          <Route path="/edit/:id" element={<Editor />} />
         </Routes>
 
         <Footer />

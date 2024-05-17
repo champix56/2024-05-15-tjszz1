@@ -3,6 +3,7 @@ import styles from "./MemeForm.module.css";
 import { ImageInterface, MemeInterface } from "orsys-tjs-meme";
 import Button from "../../ui/Button/Button";
 interface IMemeFormProps {
+  style?:object;
   meme: MemeInterface;
   onMemeChange: Function;
   onMemeSubmit:Function;
